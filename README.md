@@ -1,2 +1,3 @@
 # dltccs17
-Creative Coding School code examples
+
+DLT Creative Coding Schoolのコードのサンプルを掲載していきます。
