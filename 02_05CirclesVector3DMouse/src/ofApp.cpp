@@ -2,43 +2,37 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    // 画面基本設定
-    ofSetFrameRate(60); //秒間60コマで描画
-    ofSetBackgroundColor(0); //背景色を黒に
-    
-    //NUM回くりかえし
-    for (int i = 0; i < NUM; i++) {
-        //位置と速度を初期化
-        location[i] = ofVec2f(ofGetWidth()/2, ofGetHeight()/2);
-        velocity[i] = ofVec2f(ofRandom(-10, 10), ofRandom(-10, 10));
-    }
+    ofSetFrameRate(60);
+    ofSetBackgroundColor(0);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    //NUM回くりかえし
-    for (int i = 0; i < NUM; i++) {
+    for (int i = 0; i < location.size(); i++) {
         location[i] += velocity[i];
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    //NUM回くりかえし
-    for (int i = 0; i < NUM; i++) {
-        //計算した位置に円を描画
-        ofSetColor(31, 127, 255); //円の色
-        ofDrawCircle(location[i], 10); //半径10の円を描画
-        ofDrawCircle(location[i], 10); //半径10の円を描画
-        
-        //画面の端でバウンドするように
-        if (location[i].x < 0 || location[i].x > ofGetWidth()) { //画面の左右ではみ出したら
-            velocity[i].x *= -1; //横向きの速度を反転(バウンド)
+    for (int i = 0; i < location.size(); i++) {
+        ofSetColor(31, 127, 255);
+        ofDrawCircle(location[i], 10);
+        ofDrawCircle(location[i], 10);
+
+        if (location[i].x < 0 || location[i].x > ofGetWidth()) {
+            velocity[i].x *= -1;
         }
-        if (location[i].y < 0 || location[i].y > ofGetHeight()) { //画面の左右ではみ出したら
-            velocity[i].y *= -1; //横向きの速度を反転(バウンド)
+        if (location[i].y < 0 || location[i].y > ofGetHeight()) {
+            velocity[i].y *= -1;
+        }
+        if (location[i].z < -ofGetHeight() || location[i].z > ofGetHeight()) {
+            velocity[i].z *= -1;
         }
     }
+    
+    ofSetColor(255);
+    ofDrawBitmapStringHighlight(ofToString(location.size()), 20, 20);
 }
 
 //--------------------------------------------------------------
@@ -58,7 +52,17 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
+    ofVec3f loc = ofVec3f(x, y, 0);
+    ofVec3f vel = ofVec3f(ofRandom(-2, 2),
+                          ofRandom(-2, 2),
+                          ofRandom(-2, 2));
+    location.push_back(loc);
+    velocity.push_back(vel);
     
+    if(location.size() > max_num){
+        location.erase(location.begin());
+        velocity.erase(velocity.begin());
+    }
 }
 
 //--------------------------------------------------------------
