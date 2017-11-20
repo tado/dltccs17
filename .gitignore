@@ -133,3 +133,14 @@ Desktop.ini
 
 .mailmap
 /apps*/
+*.sln
+*.db
+*.opendb
+*.vcxproj
+*.filters
+*.user
+*.exe
+*.exp
+*.lib
+*.dll
+*.rc
