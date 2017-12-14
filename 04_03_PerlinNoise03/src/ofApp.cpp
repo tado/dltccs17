@@ -5,10 +5,9 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofSetBackgroundAuto(false);
     ofBackground(0);
-    noiseScale = ofRandom(0.01);
     particleNum = 10000;
     particles = new Particles(particleNum);
-    particles->friction = 0.01;
+    particles->friction = 0.005;
 
     for (int i = 0; i < particleNum; i++) {
         ofVec3f position = ofVec3f(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()));
@@ -19,9 +18,11 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     float speed = 0.02;
+    float noiseScale = ofMap(mouseX, 0, ofGetWidth(), 0.0, 0.01);
     particles->resetForce();
     for (int i = 0; i < particleNum; i++) {
-        float val = ofNoise(particles->positions[i].x * noiseScale, particles->positions[i].y * noiseScale);
+        float val = ofNoise(particles->positions[i].x * noiseScale,
+                            particles->positions[i].y * noiseScale);
         int angle = ofMap(val, 0, 1, 0, TWO_PI);
         ofVec3f force;
         force.x = cos(angle) * speed;
@@ -69,7 +70,6 @@ void ofApp::mousePressed(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-    noiseScale = ofRandom(0.01);
     for (int i = 0; i < particleNum; i++) {
         particles->positions[i] = ofVec3f(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()));
     }

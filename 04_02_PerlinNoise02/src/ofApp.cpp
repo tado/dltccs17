@@ -5,48 +5,33 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofBackground(0);
     ofSetLineWidth(2);
-    
-    width = ofGetWidth();
-    height = ofGetHeight();
-    
-    myImage.allocate(ofGetWidth(), ofGetHeight(), OF_IMAGE_GRAYSCALE);
-    pixels = myImage.getPixels();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    for (int j = 0; j < height; j++) {
-        for (int i = 0; i < width; i++) {
-            float scaleX = mouseX / 500.0;
-            float scaleY = mouseY / 500.0;
-            float noiseX = ofMap(i, 0, width, 0, scaleX);
-            float noiseY = ofMap(j, 0, width, 0, scaleY);
-            int noiseVal = ofNoise(noiseX, noiseY) * 255;
-            pixels[j * width + i] = noiseVal;
-        }
-    }
-    myImage.update();
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofSetColor(127);
-    myImage.draw(0, 0);
-    
     int skip = 20;
-    ofSetColor(0, 127, 255);
-    for (int j = 0; j < height; j += skip) {
-        for (int i = 0; i < width; i += skip) {
-            int val = pixels[j * width + i];
-            int rot = ofMap(val, 0, 255, 0, 360);
+    for (int j = 0; j < ofGetHeight(); j += skip) {
+        for (int i = 0; i < ofGetWidth(); i += skip) {
+            float noiseScaleX = ofMap(mouseX, 0, ofGetWidth(), 0.0, 0.01);
+            float noiseScaleY = ofMap(mouseY, 0, ofGetHeight(), 0.0, 0.01);
+            int noiseVal = ofNoise(i * noiseScaleX, j * noiseScaleY) * 255;
+            ofSetColor(noiseVal);
+            ofDrawRectangle(i, j, skip, skip);
+
+            int rot = ofMap(noiseVal, 0, 255, 0, 360);
             ofPushMatrix();
             ofTranslate(i, j);
+            ofSetColor(0, 127, 255);
             ofRotateZ(rot);
-            ofLine(0, -skip / 2.0, 0, skip / 2.0);
+            ofDrawLine(0, -skip / 1.5, 0, skip / 1.5);
             ofPopMatrix();
         }
     }
-    
 }
 
 //--------------------------------------------------------------

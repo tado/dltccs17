@@ -3,32 +3,25 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetFrameRate(60);
-    
-    width = ofGetWidth();
-    height = ofGetHeight();
-    
-    myImage.allocate(ofGetWidth(), ofGetHeight(), OF_IMAGE_GRAYSCALE);
-    pixels = myImage.getPixels();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    for (int j = 0; j < height; j++) {
-        for (int i = 0; i < width; i++) {
-            float scaleX = mouseX / 100.0;
-            float scaleY = mouseY / 100.0;
-            float noiseX = ofMap(i, 0, width, 0, scaleX);
-            float noiseY = ofMap(j, 0, width, 0, scaleY);
-            int noiseVal = ofNoise(noiseX, noiseY) * 255;
-            pixels[j * width + i] = noiseVal;
-        }
-    }
-    myImage.update();
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    myImage.draw(0, 0);
+    int skip = 10;
+    for (int j = 0; j < ofGetHeight(); j += skip) {
+        for (int i = 0; i < ofGetWidth(); i += skip) {
+            float noiseScaleX = ofMap(mouseX, 0, ofGetWidth(), 0.0, 0.01);
+            float noiseScaleY = ofMap(mouseY, 0, ofGetHeight(), 0.0, 0.01);
+            int noiseVal = ofNoise(i * noiseScaleX, j * noiseScaleY) * 255;
+            ofSetColor(noiseVal);
+            ofDrawRectangle(i, j, skip, skip);
+        }
+    }
 }
 
 //--------------------------------------------------------------
