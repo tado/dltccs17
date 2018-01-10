@@ -10,13 +10,13 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    float div = 40.0;
+    float freq = 0.02;
     float scale = 50.0;
     for (int i = 0; i < mesh.getVertices().size(); i++) {
         float x = mesh.getVertices()[i].x;
         float y = mesh.getVertices()[i].y;
-        float zx = sin(ofGetElapsedTimef() + x / div) * scale;
-        float zy = cos(ofGetElapsedTimef() + y / div)  * scale;
+        float zx = sin(ofGetElapsedTimef() + x * freq) * scale;
+        float zy = cos(ofGetElapsedTimef() + y * freq)  * scale;
         float z = zx + zy;
         mesh.setVertex(i, ofVec3f(x, y, z));
     }
