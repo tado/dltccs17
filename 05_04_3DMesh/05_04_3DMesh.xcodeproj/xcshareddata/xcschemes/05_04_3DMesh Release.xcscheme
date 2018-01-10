@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "05_05DotMeshNoise.app"
-               BlueprintName = "05_05DotMeshNoise"
-               ReferencedContainer = "container:05_05DotMeshNoise.xcodeproj">
+               BuildableName = "05_04_3DMesh.app"
+               BlueprintName = "05_04_3DMesh"
+               ReferencedContainer = "container:05_04_3DMesh.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "05_05DotMeshNoise.app"
-            BlueprintName = "05_05DotMeshNoise"
-            ReferencedContainer = "container:05_05DotMeshNoise.xcodeproj">
+            BuildableName = "05_04_3DMesh.app"
+            BlueprintName = "05_04_3DMesh"
+            ReferencedContainer = "container:05_04_3DMesh.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "05_05DotMeshNoise.app"
-            BlueprintName = "05_05DotMeshNoise"
-            ReferencedContainer = "container:05_05DotMeshNoise.xcodeproj">
+            BuildableName = "05_04_3DMesh.app"
+            BlueprintName = "05_04_3DMesh"
+            ReferencedContainer = "container:05_04_3DMesh.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "05_05DotMeshNoise.app"
-            BlueprintName = "05_05DotMeshNoise"
-            ReferencedContainer = "container:05_05DotMeshNoise.xcodeproj">
+            BuildableName = "05_04_3DMesh.app"
+            BlueprintName = "05_04_3DMesh"
+            ReferencedContainer = "container:05_04_3DMesh.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
