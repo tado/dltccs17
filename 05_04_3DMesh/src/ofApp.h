@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ofMain.h"
 
@@ -21,6 +21,6 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    ofMesh mesh;
+    ofMesh mesh; //ポリゴンメッシュ
     ofEasyCam cam;
 };

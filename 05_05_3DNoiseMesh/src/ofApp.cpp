@@ -1,4 +1,4 @@
-#include "ofApp.h"
+﻿#include "ofApp.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -10,9 +10,9 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    float div = 200.0;
-    float scale = 200.0;
-    float speed = 0.5;
+    float div = 200.0; //ノイズの細かさ
+    float scale = 200.0; //ノイズの大きさ
+    float speed = 0.5; //ノイズの速度
     for (int i = 0; i < mesh.getVertices().size(); i++) {
         float x = mesh.getVertices()[i].x;
         float y = mesh.getVertices()[i].y;
@@ -29,7 +29,6 @@ void ofApp::draw(){
     mesh.setMode(OF_PRIMITIVE_POINTS);
     glPointSize(3.0);
     mesh.draw();
-    //mesh.drawWireframe();
     ofPopMatrix();
     cam.end();
 }
