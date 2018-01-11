@@ -18,10 +18,10 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    // クラス定数
-    static const int WIDTH = 640;
-    static const int HEIGHT = 480;
-    static const int NUM_PARTICLES = WIDTH * HEIGHT;
+    // メッシュの解像度
+    int meshWidth;
+    int meshHeight;
+    int num_particles;
     
     ofEasyCam cam; // カメラ
     ofLight light; // ライト

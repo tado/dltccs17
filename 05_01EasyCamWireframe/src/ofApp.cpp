@@ -13,19 +13,15 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     cam.begin(); // カメラ開始
-   
     ofSetColor(255);
-    
     // 立方体
     box.set(200); // サイズ設定
     box.setPosition(-150, 0, 0); // 位置
     box.drawWireframe(); // ワイヤーフレームを描画
-    
     // 球
     sphere.set(100, 16); // 半径と面の細かさ
     sphere.setPosition(150, 0, 0); // 位置
     sphere.drawWireframe(); // ワイヤーフレームを描画
-    
     cam.end(); // カメラ終了
 }
 

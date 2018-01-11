@@ -1,9 +1,5 @@
 #include "ofApp.h"
 
-const int ofApp::WIDTH;
-const int ofApp::HEIGHT;
-const int ofApp::NUM_PARTICLES;
-
 //--------------------------------------------------------------
 void ofApp::setup(){
     // 画面の設定
@@ -12,6 +8,11 @@ void ofApp::setup(){
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     
     cam.setDistance(400);
+    
+    //メッシュの解像度を設定
+    meshWidth = 640;
+    meshHeight = 480;
+    num_particles = meshWidth * meshHeight;
     
     // カメラ映像をキャプチャ
     myVideo.initGrabber(640, 480);
@@ -22,34 +23,23 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    // カメラからの映像を更新
-    myVideo.update();
-    
-    // もしカメラのフレームが更新されていたら
-    if (myVideo.isFrameNew()) {
-        
-        // メッシュを初期化
-        mesh.clear();
-        
+    myVideo.update(); // カメラからの映像を更新
+    if (myVideo.isFrameNew()) { // もしカメラのフレームが更新されていたら
+        mesh.clear(); // メッシュを初期化
         // カメラの映像のピクセル情報を抽出
         ofPixels pixels = myVideo.getPixels();
-        
         // ピクセルごとに処理
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                
+        for (int i = 0; i < meshWidth; i++) {
+            for (int j = 0; j < meshHeight; j++) {
                 // ピクセルノRGB値を取得
                 float r = (float)pixels[j * int(myVideo.getWidth()) * 3 + i * 3] / 255.0;
                 float g = (float)pixels[j * int(myVideo.getWidth()) * 3 + i * 3 + 1] / 255.0;
                 float b = (float)pixels[j * int(myVideo.getWidth()) * 3 + i * 3 + 2] / 255.0;
-                
                 // RGBから明度を算出
                 float brightness = (r + g + b) / 3.0f;
-                
                 // 明度から頂点の位置を設定
-                ofVec3f vert = ofVec3f(i - WIDTH/2, j - HEIGHT/2, brightness * 255.0);
+                ofVec3f vert = ofVec3f(i - meshWidth/2, j - meshHeight/2, brightness * 255.0);
                 mesh.addVertex(vert);
-                
                 // 頂点の色はカメラのピクセルの値をそのまま使用
                 ofFloatColor color = ofFloatColor(r, g, b, 0.8);
                 mesh.addColor(color);
@@ -64,13 +54,13 @@ void ofApp::draw(){
     cam.begin();
     ofScale(1, -1, 1);
     glPointSize(3);
-    //myVbo.draw(GL_POINTS, 0, NUM_PARTICLES);
+    //myVbo.draw(GL_POINTS, 0, num_particles);
     mesh.draw();
     cam.end();
     
     // ログの表示
     string info;
-    info = "Vertex num = " + ofToString(NUM_PARTICLES, 0) + "\n";
+    info = "Vertex num = " + ofToString(num_particles, 0) + "\n";
     info += "FPS = " + ofToString(ofGetFrameRate(), 2);
     ofDrawBitmapString(info, 30, 30);
 }
