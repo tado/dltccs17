@@ -2,49 +2,34 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    //画面基本設定
-    ofSetFrameRate(60);
     ofBackground(0);
-    ofEnableDepthTest();
-    //ライトを配置
-    light.enable();
-    light.setPosition(-100, 100, 500);
-    //球からメッシュを生成
-    myMesh = ofSpherePrimitive(200, 72).getMesh();
-    //メッシュの色を設定
-    for (int i = 0; i < myMesh.getVertices().size(); i++) {
-        myMesh.addColor(ofFloatColor(1.0, 1.0, 1.0, 1.0));
-    }
+    ofPlanePrimitive plane;
+    plane.set(1000, 1000, 100, 100);
+    mesh = plane.getMesh();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    //頂点の数だけ繰り返し
-    for (int i = 0; i < myMesh.getVertices().size(); i++) {
-        //頂点の位置を取得
-        ofVec3f loc = myMesh.getVertices()[i];
-        float div1 = 800.0;
-        float div2 = 200.0;
-        //perlinノイズを生成
-        float noise1 = ofMap(ofNoise(loc.x/div1, loc.y/div1, loc.z/div1, ofGetElapsedTimef()), 0, 1, 40, 100);
-        float noise2 = ofMap(ofNoise(loc.x/div2, loc.y/div2, loc.z/div2, ofGetElapsedTimef()), 0, 1, 60, 120);
-        float noise = noise1 + noise2;
-        //ノイズの値で頂点位置を変更
-        ofVec3f newLoc = loc.normalize()* noise;
-        myMesh.setVertex(i, newLoc);
-        //頂点の色を設定
-        float c = ofMap(ofNoise(loc.x, loc.y, loc.z, ofGetElapsedTimef()),0, 1, 0.5, 1.0);
-        myMesh.setColor(i, ofFloatColor(c, c, c, 1.0));
+    float div = 200.0;
+    float scale = 200.0;
+    float speed = 0.5;
+    for (int i = 0; i < mesh.getVertices().size(); i++) {
+        float x = mesh.getVertices()[i].x;
+        float y = mesh.getVertices()[i].y;
+        float z = ofNoise(x / div, y / div, ofGetElapsedTimef() * speed) * scale;
+        mesh.setVertex(i, ofVec3f(x, y, z));
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    //メッシュを描画
     cam.begin();
     ofPushMatrix();
-    ofRotateY(ofGetElapsedTimef()*10.0);
-    myMesh.draw();
+    ofRotateX(-45);
+    mesh.setMode(OF_PRIMITIVE_POINTS);
+    glPointSize(3.0);
+    mesh.draw();
+    //mesh.drawWireframe();
     ofPopMatrix();
     cam.end();
 }
