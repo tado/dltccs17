@@ -21,6 +21,8 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
+    // マウスポインタの位置を記録する配列
     vector <ofVec2f> mousePos;
+    // ディレイの間隔(配列の最大数)
     int delayLength;
 };
