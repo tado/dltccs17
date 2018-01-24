@@ -24,7 +24,7 @@ void ofApp::update(){
 void ofApp::draw(){
 	ofSetColor(255);
 	ofDrawCircle(currentPos, 20);
-	ofSetColor(0, 255, 255);
+	ofSetColor(190);
 	ofDrawLine(currentPos, toPos);
 }
 

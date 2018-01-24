@@ -3,19 +3,28 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);
-    circleColor = ofColor(31, 127, 255);
+    ofSetFrameRate(60);
+    delayLength = 240;
+    skip = 5;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    ofVec2f pos = ofVec2f(mouseX, mouseY);
+    mousePos.push_back(pos);
+    if(mousePos.size() > delayLength){
+        mousePos.erase(mousePos.begin());
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofSetColor(circleColor);
+    ofNoFill();
+    ofEnableSmoothing();
     ofSetCircleResolution(64);
-    ofDrawCircle(mouseX, mouseY, 100);
+    for(int i = 0; i < mousePos.size(); i += skip){
+        ofDrawCircle(mousePos[i], mousePos.size() - i + 4);
+    }
 }
 
 //--------------------------------------------------------------
@@ -40,12 +49,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    circleColor = ofColor(255, 127, 31);
+
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-    circleColor = ofColor(31, 127, 255);
+
 }
 
 //--------------------------------------------------------------
