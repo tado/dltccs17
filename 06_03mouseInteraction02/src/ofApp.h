@@ -21,6 +21,6 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	ofVec2f currentPos;
-	ofVec2f toPos;
+	ofVec2f currentPos; //現在の(円を描画する)位置
+	ofVec2f toPos;      //目標位置
 };

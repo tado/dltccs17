@@ -2,20 +2,24 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	ofBackground(0);
-	ofSetFrameRate(60);
-	currentPos = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
+    ofBackground(0);
+    ofSetFrameRate(60);
+    // 現在位置を画面の中心に
+    currentPos = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	toPos = ofVec2f(mouseX, mouseY);
-	currentPos += (toPos - currentPos) * 0.1;
+    // 目標位置をマウスポインタの位置に
+    toPos = ofVec2f(mouseX, mouseY);
+    // 目標位置への1/10だけ移動
+    currentPos += (toPos - currentPos) * 0.1;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofDrawCircle(currentPos, 20);
+    // 現在位置に円を描画
+    ofDrawCircle(currentPos, 20);
 }
 
 //--------------------------------------------------------------

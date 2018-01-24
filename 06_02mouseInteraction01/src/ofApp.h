@@ -1,9 +1,7 @@
 #pragma once
-
 #include "ofMain.h"
 
 class ofApp : public ofBaseApp {
-
 public:
 	void setup();
 	void update();
@@ -21,5 +19,5 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-    ofColor circleColor;
+    ofColor circleColor; // 円の色
 };
