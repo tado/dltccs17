@@ -23,5 +23,5 @@ public:
     
     vector <ofVec2f> mousePos;
     int delayLength;
-    int skip;
+    int skip; // ピックアップする位置の間隔
 };

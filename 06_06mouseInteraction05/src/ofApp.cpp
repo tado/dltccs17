@@ -18,6 +18,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    // 一定間隔(skip)で位置を取り出して描画していく
     for(int i = 0; i < mousePos.size(); i += skip){
         ofDrawCircle(mousePos[i], 20);
     }

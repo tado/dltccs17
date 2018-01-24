@@ -19,10 +19,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    // 円の描画設定
     ofNoFill();
     ofEnableSmoothing();
     ofSetCircleResolution(64);
     for(int i = 0; i < mousePos.size(); i += skip){
+        // 円の大きさを段階的に変化させる
         ofDrawCircle(mousePos[i], mousePos.size() - i + 4);
     }
 }
