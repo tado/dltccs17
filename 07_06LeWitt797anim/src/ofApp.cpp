@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(255);
+    ofSetBackgroundAuto(false);
     ofSetColor(0);
     ofNoFill();
     ofEnableSmoothing();
@@ -17,11 +18,17 @@ void ofApp::setup(){
     cols[1] = ofColor(255, 0, 0);
     cols[2] = ofColor(255, 255, 0);
     cols[3] = ofColor(0, 0, 255);
+    pointNum = 0;
+    lineNum = 1;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
+    pointNum+=40;
+    if (pointNum > points.size()) {
+        lineNum += 2;
+        pointNum = 0;
+    }
 }
 
 //--------------------------------------------------------------
@@ -33,11 +40,11 @@ void ofApp::draw(){
 void ofApp::drawLoop(){
     int margin = 20;
     int col = 0;
-    for (int j = margin; j < ofGetHeight(); j+=2) {
+    for (int j = margin; j < lineNum + margin; j+=2) {
         ofSetColor(cols[col%4]);
         col++;
         ofBeginShape();
-        for (int i = 0; i < points.size(); i++) {
+        for (int i = 0; i < pointNum; i++) {
             ofVertex(points[i].x, points[i].y + j);
             if(points[i].y + j > ofGetHeight()){
                 return;
@@ -91,7 +98,6 @@ void ofApp::mouseExited(int x, int y){
 void ofApp::windowResized(int w, int h){
     
 }
-
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
     
