@@ -21,7 +21,5 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    ofVec2f linePosition[10000];
-    float lineAngle[10000];
     int lineNum;
 };
