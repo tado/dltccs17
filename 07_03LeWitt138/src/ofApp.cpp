@@ -3,10 +3,6 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(255);
-    ofSetColor(0);
-    ofNoFill();
-    ofEnableSmoothing();
-    ofSetCircleResolution(128);
 }
 
 //--------------------------------------------------------------
@@ -16,6 +12,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	ofSetColor(0, 127);
+	ofNoFill();
+	ofEnableSmoothing();
+	ofSetCircleResolution(128);
     for (int i = 0; i < ofGetHeight()*2; i+=10) {
         ofDrawCircle(ofGetWidth()/2, 0, i);
         ofDrawCircle(ofGetWidth()/2, ofGetHeight(), i);

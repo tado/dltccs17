@@ -22,4 +22,5 @@ public:
     void gotMessage(ofMessage msg);
 
     int arcNum;
+	int step;
 };

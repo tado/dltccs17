@@ -3,36 +3,33 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(255);
+	ofSetFrameRate(60);
+	ofSetBackgroundAuto(false);
     ofSetColor(0);
-    
     lineNum = 0;
-    for (int i = 0; i < 10000; i++) {
-        linePosition[i] = ofVec2f(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()));
-        lineAngle[i] = ofRandom(360);
-    }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if (lineNum <= 10000) {
-        lineNum+=10;
-    }
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    for (int i = 0; i < lineNum; i++) {
-        ofPushMatrix();
-        ofTranslate(linePosition[i]);
-        ofRotate(lineAngle[i]);
-        ofDrawLine(0, 0, 25, 0);
-        ofPopMatrix();
-    }
+	if (lineNum <= 10000){
+		ofPushMatrix();
+		ofTranslate(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()));
+		ofRotate(ofRandom(360));
+		ofDrawLine(0, 0, 25, 0);
+		ofPopMatrix();
+		lineNum++;
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if (key == 'a') {
+		ofClear(255);
         lineNum = 0;
     }
 }
