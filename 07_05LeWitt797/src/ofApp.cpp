@@ -3,10 +3,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(255);
-    ofSetColor(0);
-    ofNoFill();
+	ofNoFill();
     ofEnableSmoothing();
-    ofSetCircleResolution(128);
     for (int i = 0; i < ofGetWidth(); i++) {
         float noise0 = ofNoise(i * 0.1) * 10;
         float noise1 = ofNoise(i * 0.01) * 100;
