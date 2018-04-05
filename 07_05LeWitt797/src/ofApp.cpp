@@ -5,12 +5,14 @@ void ofApp::setup(){
     ofBackground(255);
 	ofNoFill();
     ofEnableSmoothing();
+    //でこぼこの水平線を生成
     for (int i = 0; i < ofGetWidth(); i++) {
         float noise0 = ofNoise(i * 0.1) * 10;
         float noise1 = ofNoise(i * 0.01) * 100;
         ofVec2f pos = ofVec2f(i, noise0 + noise1);
         points.push_back(pos);
     }
+    //4色のインクの定義
     cols[0] = ofColor(0, 0, 0);
     cols[1] = ofColor(255, 0, 0);
     cols[2] = ofColor(255, 255, 0);
