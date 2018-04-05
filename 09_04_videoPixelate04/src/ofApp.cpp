@@ -6,7 +6,7 @@ void ofApp::setup(){
     ofSetBackgroundAuto(false);
     //init camera
     cam.listDevices();
-    cam.setDeviceID(1);
+    cam.setDeviceID(0);
     cam.initGrabber(1280, 720);
     ofSetRectMode(OF_RECTMODE_CENTER);
 }

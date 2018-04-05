@@ -4,7 +4,7 @@ void ofApp::setup(){
     // list camera device ID
     cam.listDevices();
     // select camera
-    cam.setDeviceID(1);
+    cam.setDeviceID(0);
     
     cam.initGrabber(1280, 720);
 }
